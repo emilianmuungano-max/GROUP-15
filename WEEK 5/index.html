@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Grade Calculator</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 25px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#results {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    min-height: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Student Grade Calculator</h1>
+
+    <input type="number" id="scoreInput" placeholder="Enter score (0-100)">
+
+    <button id="calcBtn">Calculate Grade</button>
+
+    <div id="results"></div>
+</div>
+
+<script>
+// Get elements
+const scoreInput = document.getElementById("scoreInput");
+const calcBtn = document.getElementById("calcBtn");
+const results = document.getElementById("results");
+
+// Button click event
+calcBtn.addEventListener("click", function () {
+
+    let score = Number(scoreInput.value);
+
+    // Validation
+    if (scoreInput.value === "" || isNaN(score)) {
+        results.innerHTML = "Please enter a valid number.";
+        return;
+    }
+
+    if (score < 0 || score > 100) {
+        results.innerHTML = "Score must be between 0 and 100.";
+        return;
+    }
+
+    let grade;
+
+    // Grade calculation
+    if (score >= 70) {
+        grade = "A";
+    } else if (score >= 60) {
+        grade = "B";
+    } else if (score >= 50) {
+        grade = "C";
+    } else if (score >= 40) {
+        grade = "D";
+    } else {
+        grade = "F";
+    }
+
+    // Display result
+    results.innerHTML =
+        "<p>Score: " + score + "</p>" +
+        "<p>Grade: " + grade + "</p>";
+
+    // Clear input field
+    scoreInput.value = "";
+});
+</script>
+
+</body>
+</html>
+
